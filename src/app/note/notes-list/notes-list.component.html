@@ -1,1 +1,8 @@
-<p>notes-list works!</p>
+<div class="cards-list">
+  <mat-card *ngFor="let note of noteList">
+    <p>{{note.title}}</p>
+    <p>{{note.description}}</p>
+  </mat-card>
+</div>
+
+<!--<button id="addNote" mat-raised-button color="primary">+ Add</button>-->

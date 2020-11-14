@@ -1,0 +1,11 @@
+$mat_toolbar_background_color: rgb(2,0,36);
+$span_color: white;
+
+.mat-toolbar-container {
+  justify-content: center;
+  background: $mat_toolbar_background_color linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(255, 84, 249, 1) 0%, rgba(74, 131, 233, 1) 63%, rgba(0, 212, 255, 1) 84%);
+}
+
+.span-item {
+  color: $span_color;
+}

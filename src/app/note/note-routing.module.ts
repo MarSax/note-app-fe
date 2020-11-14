@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {NotesListComponent} from './notes-list/notes-list.component';
-import {NoteDetailComponent} from './note-detail/note-detail.component';
 import {PageNotFoundComponent} from '../page-not-found/page-not-found.component';
+import {NoteEditComponent} from './note-edit/note-edit.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'notes/:id',
-    component: NoteDetailComponent
+    component: NoteEditComponent
   },
   {
     path: '**',
@@ -25,4 +25,4 @@ const routes: Routes = [
 })
 export class NoteRoutingModule { }
 
-export const noteRoutingComponents = [NoteDetailComponent, NotesListComponent];
+export const noteRoutingComponents = [NoteEditComponent, NotesListComponent];
