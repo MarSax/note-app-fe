@@ -13,6 +13,7 @@ export class NotesListComponent implements OnInit {
       {id: 1, title: 'ciao', description: 'provaprovaprovaprovaprovaprovaprovaprovaprovaprovaprovaprova'},
       {id: 2, title: 'ciao', description: 'provaprovaprovaprovaprovaprovaprovaprovaprovaprovaprovaprova'},
       {id: 3, title: 'ciao', description: 'provaprovaprovaprovaprovaprovaprovaprovaprovaprovaprovaprova'},
+      {id: 3, title: 'ciao', description: 'provaprovaprovaprovaprovaprovaprovaprovaprovaprovaprovaprova'},
     ];
 
   constructor(private noteService: NoteService) { }

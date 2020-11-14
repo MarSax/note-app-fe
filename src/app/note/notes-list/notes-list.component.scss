@@ -1,4 +1,12 @@
-$add_note_width: 20rem;
+$add_note_width: 10rem;
+
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
 
 .cards-list {
   display: inline-flex;
@@ -11,5 +19,4 @@ $add_note_width: 20rem;
 
 #addNote {
   width: $add_note_width;
-  align-self: flex-end;
 }
