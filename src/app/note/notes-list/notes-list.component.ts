@@ -33,4 +33,9 @@ export class NotesListComponent implements OnInit {
   public goToNewPage(): void {
     this.router.navigate(['new-note'], { relativeTo: this.route });
   }
+
+  public deleteNote(id: number): void {
+    this.noteService.deleteNote(id).subscribe();
+    this.noteList = this.noteList.filter((note: Note) => note.id !== id);
+  }
 }

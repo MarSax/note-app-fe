@@ -1,8 +1,16 @@
 <div class="wrapper">
   <div class="cards-list">
-    <mat-card *ngFor="let note of noteList" (click)="goToEditPage(note.id)">
-      <p>{{note.title}}</p>
+    <mat-card *ngFor="let note of noteList">
+      <p>{{note.title}} </p>
       <p>{{note.description}}</p>
+      <div class="form-group">
+        <button mat-mini-fab color="accent" (click)="goToEditPage(note.id)">
+          M
+        </button>
+        <button mat-mini-fab color="warn" (click)="deleteNote(note.id)">
+          X
+        </button>
+      </div>
     </mat-card>
   </div>
 
