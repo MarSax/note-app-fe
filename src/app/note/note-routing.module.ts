@@ -10,8 +10,14 @@ const routes: Routes = [
     component: NotesListComponent
   },
   {
+    path: 'notes/new-note',
+    component: NoteEditComponent,
+    data: {isEdit : false},
+  },
+  {
     path: 'notes/:id',
-    component: NoteEditComponent
+    component: NoteEditComponent,
+    data: {isEdit : true},
   },
   {
     path: '**',

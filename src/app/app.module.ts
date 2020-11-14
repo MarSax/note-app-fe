@@ -10,6 +10,7 @@ import {NoteRoutingModule} from './note/note-routing.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 export const materialModule = [MatToolbarModule];
 
@@ -26,6 +27,8 @@ export const materialModule = [MatToolbarModule];
     HttpClientModule,
     NoteRoutingModule,
     NoteModule,
+    FormsModule,
+    ReactiveFormsModule,
     materialModule
   ],
   providers: [],

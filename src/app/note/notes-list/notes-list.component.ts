@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Note} from '../note';
 import {NoteService} from '../note-service/note.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-notes-list',
@@ -9,22 +10,27 @@ import {NoteService} from '../note-service/note.service';
 })
 export class NotesListComponent implements OnInit {
 
-  public noteList: Array<Note> = [
-      {id: 1, title: 'ciao', description: 'provaprovaprovaprovaprovaprovaprovaprovaprovaprovaprovaprova'},
-      {id: 2, title: 'ciao', description: 'provaprovaprovaprovaprovaprovaprovaprovaprovaprovaprovaprova'},
-      {id: 3, title: 'ciao', description: 'provaprovaprovaprovaprovaprovaprovaprovaprovaprovaprovaprova'},
-      {id: 3, title: 'ciao', description: 'provaprovaprovaprovaprovaprovaprovaprovaprovaprovaprovaprova'},
-    ];
+  public noteList: Array<Note> = [];
 
-  constructor(private noteService: NoteService) { }
+  constructor(private noteService: NoteService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // this.getAllNotes();
   }
 
-  getAllNotes(): void {
+  public getAllNotes(): void {
     this.noteService.findAllNotes().subscribe((notes: Array<Note>) => {
       this.noteList = notes;
     });
+  }
+
+  public goToEditPage(noteId: number): void {
+    this.router.navigate([noteId], { relativeTo: this.route });
+  }
+
+  public goToNewPage(): void {
+    this.router.navigate(['new-note'], { relativeTo: this.route });
   }
 }
