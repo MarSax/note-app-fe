@@ -17,7 +17,7 @@ export class NotesListComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.getAllNotes();
+    this.getAllNotes();
   }
 
   public getAllNotes(): void {

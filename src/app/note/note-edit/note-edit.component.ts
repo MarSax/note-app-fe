@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Note} from '../note';
 import {NoteService} from '../note-service/note.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -11,21 +11,21 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class NoteEditComponent implements OnInit {
 
-  public note: Note | undefined;
+  public note!: Note;
   public noteId = -1;
-  public isEditPage: boolean;
-  public noteFormGroup: FormGroup | undefined;
+  public isEditPage!: boolean;
+  public noteFormGroup!: FormGroup;
 
   constructor(private noteService: NoteService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.isEditPage = this.route.snapshot.data.isEdit;
-    this.initializeNote(this.isEditPage);
   }
 
   ngOnInit(): void {
+    this.isEditPage = this.route.snapshot.data.isEdit;
     this.getNoteIdFromPath();
     this.initializeNoteFormGroup();
+    this.initializeNote(this.isEditPage);
   }
 
   private initializeNote(isEditPage: boolean): void {
@@ -52,6 +52,12 @@ export class NoteEditComponent implements OnInit {
   public getNoteById(noteId: number): void {
     this.noteService.findNoteById(noteId).subscribe((note: Note) => {
       this.note = note;
+      if (this.isEditPage) {
+        this.noteFormGroup.patchValue({
+          title: this.note.title,
+          description: this.note.description
+        });
+      }
     });
   }
 
@@ -64,7 +70,17 @@ export class NoteEditComponent implements OnInit {
   }
 
   public saveOrUpdateNote(): void {
-    console.log(this.noteFormGroup?.value);
+    this.note = this.noteFormGroup.value;
+    if (!this.isEditPage) {
+      this.noteService.saveNote(this.note).subscribe((note: Note) => {
+        this.note = note;
+      });
+    } else {
+      this.note.id = this.noteId;
+      this.noteService.updateNote(this.note).subscribe((note: Note) => {
+        this.note = note;
+      });
+    }
     this.router.navigate(['../'], {relativeTo: this.route});
   }
 
