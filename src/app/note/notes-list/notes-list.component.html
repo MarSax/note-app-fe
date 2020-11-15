@@ -1,6 +1,12 @@
 <div class="wrapper">
+
+  <div class="form-group">
+    <label for="filter">Filter</label>
+    <input id="filter" class="form-control" type="text" #filter (keyup)="filterList(filter.value)" (keydown)="resetFullList(filter.value)">
+  </div>
+
   <div class="cards-list">
-    <mat-card *ngFor="let note of noteList">
+    <mat-card *ngFor="let note of filteredNoteList">
       <p>{{note.title}} </p>
       <p>{{note.description}}</p>
       <div class="form-group">
@@ -15,4 +21,5 @@
   </div>
 
   <button id="addNote" mat-raised-button color="primary" (click)="goToNewPage()">+ Add</button>
+
 </div>

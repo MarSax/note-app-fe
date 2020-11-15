@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class NotesListComponent implements OnInit {
 
+  public filteredNoteList: Array<Note> = [];
   public noteList: Array<Note> = [];
 
   constructor(private noteService: NoteService,
@@ -23,6 +24,7 @@ export class NotesListComponent implements OnInit {
   public getAllNotes(): void {
     this.noteService.findAllNotes().subscribe((notes: Array<Note>) => {
       this.noteList = notes;
+      this.filteredNoteList = notes;
     });
   }
 
@@ -37,5 +39,17 @@ export class NotesListComponent implements OnInit {
   public deleteNote(id: number): void {
     this.noteService.deleteNote(id).subscribe();
     this.noteList = this.noteList.filter((note: Note) => note.id !== id);
+  }
+
+  public filterList(value: string): void {
+    this.filteredNoteList = this.noteList.filter((note: Note) => {
+      return !!(note.title.includes(value) || (note.description && note.description.includes(value)));
+    });
+  }
+
+  public resetFullList(value: string): void {
+    if (value === '') {
+      this.filteredNoteList = this.noteList;
+    }
   }
 }
